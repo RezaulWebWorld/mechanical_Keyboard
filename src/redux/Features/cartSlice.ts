@@ -26,6 +26,25 @@ const cartSlice = createSlice({
       state.tax = selectedTax(state);
       state.grandTotal = selectGrandTotal(state);
     },
+    updatedQuantity: (state: any, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const products = state.products.map((product: any) => {
+        if (product.id === action.payload.id) {
+          if (action.payload.type === "increament") {
+            product.quantity += 1;
+          } else if (action.payload.type === "decreament") {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            product.quantity - +1;
+          }
+        }
+        return product;
+      });
+      state.products = products.filter((product: any) => product.quantity > 0);
+      state.selectedItems = selectedQuantity(state);
+      state.totalPrice = selectTotalPrice(state);
+      state.tax = selectedTax(state);
+      state.grandTotal = selectGrandTotal(state);
+    },
   },
 });
 

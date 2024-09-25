@@ -1,5 +1,4 @@
 import { Button } from '@headlessui/react';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../redux/hook';
 import { addToCart } from '../redux/Features/cartSlice';
@@ -9,7 +8,7 @@ import { addToCart } from '../redux/Features/cartSlice';
 const ProductDetailsCart = ({product}:{product:any}) => {
   const dispatch= useAppDispatch()
   const navigate= useNavigate()
-  const [isDisabled, setDisable]=useState(false)
+ const isDisabled= product.availableQuantity <=0
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCart=()=>{
@@ -32,9 +31,9 @@ const ProductDetailsCart = ({product}:{product:any}) => {
            <p  className="text-gray-600 text-xl py-2 md:text-2xl" id='quantity'>Available Quantity: {product.availableQuantity} </p>
            <p className="text-gray-600 text-xl py-2 md:text-2xl">Rating:4.5 </p>
            <p className="text-gray-600 text-xl py-2 md:text-2xl">Description: This is a good keyBoard </p>
-  <div className='text-center'><Button onClick={handleCart} className= {`mx-auto mt-5 bg-blue-500 text-white px-4 py-2 rounded 
-  ${product.availableQuantity>0 ? `bg-blue-500 text-white hover`
- : `bg-gray-400 text-gray-200 cursor-not-allowed ${setDisable(true)}`}`}> Add to cart</Button></div>
+  <div className='text-center'><Button onClick={handleCart} disabled={isDisabled} className= {`mx-auto mt-5 bg-blue-500 text-white px-4 py-2 rounded 
+  ${!isDisabled ? `bg-blue-500 text-white hover`
+ : `bg-gray-400 text-gray-200 cursor-not-allowed `}`}> Add to cart</Button></div>
 </div>
 </div>
   );

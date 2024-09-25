@@ -1,68 +1,32 @@
-import { Button } from "@headlessui/react";
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useAppSelector } from '../redux/hook';
+import SelectedProductCart from './SelectedProductCart';
  
 const SelectedProduct = () => {
-  const handleDelete=()=>{
-    console.log("Clicked on Delete")
-  }
-  const handleCheckOut=()=>{
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const navigate=useNavigate()
-      navigate('/checkout')
-  }
+  // const handleDelete=()=>{
+  //   console.log("Clicked on Delete")
+  // }
+  const products=useAppSelector((state)=>state.cart.products)
+  // const handleCheckOut=()=>{
+  //     // eslint-disable-next-line react-hooks/rules-of-hooks
+  //     const navigate=useNavigate()
+  //     navigate('/checkout')
+  // }
   return (
-    <div className="container p-10">
-      <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Cart View</h2>
+    <div className="container mt-10 mx-auto">
+      <div className="flex lg:flex-row flex-col-reverse justify-center lg:space-x-40 ">
+        <div className="space-y-5 lg:mt-0 mt-5">
+          {products.length ? (
+            products.map((product: any) => (
+              <SelectedProductCart key={product.id} product={product} />
+            ))
+          ) : (
+            <p className="text-2xl text-red-500"> not product found</p>
+          )}
         </div>
-     <table className="table-fixed grid">
-      
-    <thead className="border border-grey-600 grid grid-cols-1 " >
-    <tr className="border border-grey-600 grid grid-cols-4 justify-items-center" >
-      <th className="border border-grey-600 justify-center" >Product Title</th>
-      <th className="border border-grey-600 justify-center">Quantity</th>
-      <th className="border border-grey-600 justify-center">Prices</th>
-      <th className="border border-grey-600  justify-center">Remove</th>
-    </tr>
-  </thead>
-  
-  <tbody className="border border-grey-600 grid grid-cols-1 ">
-    <tr className="border border-grey-600 grid grid-cols-4 justify-items-center">
-      <td className="border600 border-grey-">Product Name</td>
-      <td className="border border-grey-600  justify-center">Keyboard</td>
-      <td className="border border-grey-600 justify-center"> 120</td>
-      <td className="border border-grey-600  justify-center"> <Button onClick={handleDelete}>Delete</Button></td>
-    </tr>
-  </tbody>
-</table>
-<div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Pricing Details</h2>
-        </div>
-     <table className="table-fixed grid">
-      
-    <thead className="border border-grey-600 grid grid-cols-1 " >
-    <tr className="border border-grey-600 grid grid-cols-4 justify-items-center" >
-      <th className="border border-grey-600 justify-center" >Product Title</th>
-      <th className="border border-grey-600 justify-center">Quantity</th>
-      <th className="border border-grey-600 justify-center">Prices</th>
-      <th className="border border-grey-600  justify-center">Remove</th>
-    </tr>
-  </thead>
-  
-  <tbody className="border border-grey-600 grid grid-cols-1 ">
-    <tr className="border border-grey-600 grid grid-cols-4 justify-items-center">
-      <td className="border600 border-grey-">Product Name</td>
-      <td className="border border-grey-600  justify-center">Keyboard</td>
-      <td className="border border-grey-600 justify-center"> 120</td>
-      <td className="border border-grey-600  justify-center"> <Button onClick={handleDelete}>Delete</Button></td>
-    </tr>
-  </tbody>
-</table>
-<thead className="border border-grey-600 grid grid-cols-1 " >
-<div className="text-center mb-8">
-      <button onClick={handleCheckOut} className="rounded-full border border-grey-600 p-5">Proceed To checkout</button>
-        </div>
-  </thead>
+ 
+      </div>
     </div>
   );
 };

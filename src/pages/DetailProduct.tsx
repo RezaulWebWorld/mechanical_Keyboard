@@ -1,7 +1,8 @@
 import ProductDetails from '../component/ProductDetails';
 
-const DetailProduct = ({id}) => {
-  alert(id)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const DetailProduct = ({id}:{id:any}) => {
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 ">
       <section className="border border-brown-500 md:grid-cols-1">

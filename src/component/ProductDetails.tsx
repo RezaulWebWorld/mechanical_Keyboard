@@ -6,8 +6,8 @@ import ProductDetailsCart from './ProductDetailsCart';
 const ProductDetails = () => {
   const products=getAllProducts()
   const {id}=useParams()
-  const product=products.find((p)=>p.id=== parseInt(id))
-  console.log (product)
+  const product=products.find((p)=>p.id=== parseInt(id as string))
+  
  
   return (
     <div>
@@ -15,7 +15,7 @@ const ProductDetails = () => {
  
   <div className="col-span-2 ">
   <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
-  <ProductDetailsCart key={product.id} product={product}/>
+  <ProductDetailsCart key={product?.id} product={product}/>
   
   </div>
     </div>
