@@ -8,6 +8,7 @@ import ContactUs from "../pages/ContactUs";
 import App from "../App";
 import ShoppingCart from "../pages/ShoppingCart";
 import Checkout from "../pages/Checkout";
+import ProductDetails from "../component/ProductDetails";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     {
       path: "/checkout",
       element: <Checkout/>,
+    },
+    {
+      path: "/details",
+      element: <ProductDetails/>,
     },
   ]}
 ]);

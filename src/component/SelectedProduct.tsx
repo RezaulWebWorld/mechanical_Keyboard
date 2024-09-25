@@ -1,6 +1,6 @@
 import { Button } from "@headlessui/react";
 import { useNavigate } from 'react-router-dom';
-
+ 
 const SelectedProduct = () => {
   const handleDelete=()=>{
     console.log("Clicked on Delete")

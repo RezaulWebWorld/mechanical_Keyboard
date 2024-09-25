@@ -1,70 +1,22 @@
+import getAllProducts from "../Data/products";
+import ProductCart from "./ProductCart";
+
 const FeatureProducts = () => {
+  const products=  getAllProducts()
+  
   return (
-    <div>
+    <section className="py-10 my-5 bg-gray-100">
+    <div className="container mx-auto px-4">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold mb-4">Our Featured Product</h2>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-12 bg-gray-300">
-         
-      <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
-        
-         <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
-
-        
-         <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
-         <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
-        
-         <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
-
-        
-         <div className="p-6 bg-white shadow-lg rounded-lg text-center">
-           <img src="" alt="" />
-           <h3 className="text-xl font-semibold mb-2">Title / Name</h3>
-           <p className="text-gray-600">Brand</p>
-           <p className="text-gray-600">Available Quantity</p>
-           <p className="text-gray-600">Price</p>
-           <p className="text-gray-600">Rating (In Stars)</p>
-           <button type="button">See Details</button>
-         </div>
+      
+       {products.map((product)=><ProductCart key={product.id} product={product}/>)}
+      
        </div>
     </div>
+    </section>
   );
 };
 
