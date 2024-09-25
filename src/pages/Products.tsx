@@ -1,5 +1,4 @@
 import ProductSearch from "../component/ProductSearch";
-import ProductSummary from "../component/ProductSummary";
 
 
 const Products = () => {

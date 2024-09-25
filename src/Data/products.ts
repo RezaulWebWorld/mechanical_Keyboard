@@ -15,7 +15,7 @@ const products = [
     image: "https://via.placeholder.com/150",
     title: "Mechanical Gaming Keyboard",
     brand: "HyperX",
-    availableQuantity: 20,
+    availableQuantity: 0,
     price: 129.99,
     rating: 4.8,
     description:

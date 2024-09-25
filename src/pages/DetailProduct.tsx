@@ -1,6 +1,7 @@
 import ProductDetails from '../component/ProductDetails';
 
-const DetailProduct = () => {
+const DetailProduct = ({id}) => {
+  alert(id)
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 ">
       <section className="border border-brown-500 md:grid-cols-1">

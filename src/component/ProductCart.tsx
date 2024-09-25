@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { Button } from '@headlessui/react';
 import { useNavigate } from 'react-router-dom';
- 
 
-const ProductCart = ({product}) => {
+
+const ProductCart = ({product}:{product:any}) => {
+  
   const navigate=useNavigate()
- 
+
+  
     const handleDetails=()=>{
-      navigate('/details')
-      console.log("Handle Details Clicked")
+       navigate(`/details/${product.id}`)
     }
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg text-center">
@@ -19,9 +22,11 @@ const ProductCart = ({product}) => {
            <p className="text-gray-600">Rating: {product.rating}</p>
            <button onClick={handleDetails} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded 
                        text-sm sm:text-base md:text-xs lg:text-xl 
-                       transition-all duration-300 ease-in-out">See More
+                       transition-all duration-300 ease-in-out">See Details
     </button>
+          
          </div>
+         
         
   );
 };
