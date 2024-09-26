@@ -41,7 +41,7 @@ const UserForm = () => {
           <input
             type="text"
             name="name"
-            // value={order.name}
+             value={order.name}
             onChange={handleOrder}
             className="w-full p-2 border rounded"
             placeholder="Enter your name"

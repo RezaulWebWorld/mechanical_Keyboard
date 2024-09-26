@@ -2,6 +2,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import {  ShoppingCart } from "lucide-react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../redux/hook';
 
 const navigation = [
   { name: 'Home', href: '/', current:true},
@@ -16,6 +17,7 @@ function classNames(...classes: string[]) {
 
 
 const Navbar = () => {
+  const products=useAppSelector((state)=>state.cart.products)
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -70,7 +72,7 @@ const Navbar = () => {
             <ShoppingCart size={24} />
           </Link>
           <span className="rounded-full absolute top-[-10px] left-[20px] bg-white text-black text-center w-[20px] h-[20px] flex items-center justify-center">
-           0
+          {products.length}
           </span>
         </li>
           </div>

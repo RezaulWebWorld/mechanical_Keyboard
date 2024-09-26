@@ -1,16 +1,19 @@
 import { Minus, Plus, Trash2 } from 'lucide-react';
-import React from 'react';
+import { useAppDispatch } from '../redux/hook';
+import { removedSelection, updatedQuantity } from '../redux/Features/cartSlice';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SelectedProductCart = ({product}:{product:any}) => {
+  const dispatch=useAppDispatch()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleQuantity=(type:string, id: any)=>{
-    console.log("Clicked Handle Remove",type, id)
+    const payload={type,id}
+    dispatch(updatedQuantity(payload))
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRemove=(id:any)=>{
-    console.log("Clicked Handle Remove", id)
+    dispatch(removedSelection({id}))
   }
   return (
     <div className="flex items-center justify-between space-x-4 border border-gray-300 rounded-lg p-4 bg-white shadow-md transition-transform transform hover:scale-105 hover:shadow-lg w-full  mx-auto">

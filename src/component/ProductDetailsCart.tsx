@@ -15,7 +15,7 @@ const ProductDetailsCart = ({product}:{product:any}) => {
 
     if(isDisabled===false){
       dispatch(addToCart(product))
-    navigate('/cart')
+    navigate('/products')
     }
    
     
