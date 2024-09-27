@@ -11,7 +11,7 @@ const HeroSection = () => {
             Discover the best products and services tailored for your needs.
           </p>
           <a href="/products" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full">
-            Get Started
+            Get Exciting Product
           </a>
         </div>
       </div>

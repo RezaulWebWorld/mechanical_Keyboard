@@ -24,28 +24,28 @@ const SelectedProductCart = ({product}:{product:any}) => {
       />
       <div className="flex-grow mx-4">
         <h3 className="text-lg font-semibold text-black truncate mb-2">{product.name}</h3>
-        <p className="text-lg font-bold text-yellow-600">${product.price}</p>
+        <p className="text-4xl font-bold text-blue-600">${product.price}</p>
       </div>
       <div className="flex items-center space-x-2">
         <button
           onClick={() => handleQuantity("decrement", product.id)}
-          className="bg-yellow-700 text-white p-2 rounded-full hover:bg-green-800"
+          className="bg-indigo-700 text-white p-2 rounded-full hover:bg-blue-800"
         >
-          <Minus size={18} />
+          <Minus size={20} />
         </button>
         <span className="text-lg font-semibold">{product.quantity}</span>
         <button
           onClick={() => handleQuantity("increment", product.id)}
-          className="bg-yellow-700 text-white p-2 rounded-full hover:bg-green-800"
+          className="bg-indigo-700 text-white p-2 rounded-full hover:bg-blue-800"
         >
-          <Plus size={18} />
+          <Plus size={20} />
         </button>
       </div>
       <button
         onClick={() => handleRemove( product.id)}
         className="bg-red-600 text-white p-2 rounded-full hover:bg-red-700"
       >
-        <Trash2 size={18} />
+        <Trash2 size={20} />
       </button>
     </div>
   );

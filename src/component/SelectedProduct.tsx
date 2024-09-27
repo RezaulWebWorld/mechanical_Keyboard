@@ -4,15 +4,9 @@ import { useAppSelector } from '../redux/hook';
 import SelectedProductCart from './SelectedProductCart';
  
 const SelectedProduct = () => {
-  // const handleDelete=()=>{
-  //   console.log("Clicked on Delete")
-  // }
+  
   const products=useAppSelector((state)=>state.cart.products)
-  // const handleCheckOut=()=>{
-  //     // eslint-disable-next-line react-hooks/rules-of-hooks
-  //     const navigate=useNavigate()
-  //     navigate('/checkout')
-  // }
+  
   return (
     <div className="container mt-10 mx-auto">
       <div className="flex lg:flex-row flex-col-reverse justify-center lg:space-x-40 ">
@@ -22,7 +16,10 @@ const SelectedProduct = () => {
               <SelectedProductCart key={product.id} product={product} />
             ))
           ) : (
-            <p className="text-2xl text-red-500"> not product found</p>
+            <>
+            <h3 className="text-5xl text-red-500"> Not product found</h3>
+            <img src='/src/assets/images/No_Product.png'className="text-2xl text-red-500"/>
+            </>
           )}
         </div>
  

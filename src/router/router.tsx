@@ -9,6 +9,7 @@ import App from "../App";
 import ShoppingCart from "../pages/ShoppingCart";
 import Checkout from "../pages/Checkout";
 import ProductDetails from "../component/ProductDetails";
+import Dashboard from "../pages/Dashboard";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     {
       path: "/details/:id",
       element: <ProductDetails/>,
+    },
+    {
+      path: "/db",
+      element: <Dashboard/>,
     },
   ]}
 ]);
