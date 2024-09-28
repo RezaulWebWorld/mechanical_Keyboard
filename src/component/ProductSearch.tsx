@@ -1,8 +1,11 @@
 import { useState } from "react";
 import getAllProducts from "../Data/products";
 import ProductCart from "./ProductCart";
+import { useGetProductsQuery } from "../redux/api/api";
 
 const ProductSearch = () => {
+  const {data}=useGetProductsQuery({})
+  console.log(data)
   const products=getAllProducts()
   const [searchQuery, setSearchQuery]= useState('')
   const [miniPrice, setMiniPrice]= useState('')
