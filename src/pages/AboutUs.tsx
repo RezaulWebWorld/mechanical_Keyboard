@@ -1,5 +1,6 @@
 
 const AboutUs = () => {
+
   return (
     <div>
     <div className="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">

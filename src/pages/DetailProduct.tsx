@@ -1,7 +1,7 @@
 import ProductDetails from '../component/ProductDetails';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DetailProduct = ({id}:{id:any}) => {
+const DetailProduct = () => {
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 ">

@@ -8,6 +8,7 @@ export const store = configureStore({
     cart: cartReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
+  //Compolesary Middlewares For Redux Rtk Query
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares().concat(baseApi.middleware),
 });

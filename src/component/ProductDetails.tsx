@@ -12,7 +12,7 @@ const ProductDetails = () => {
   return (
     <div>
       <div className=" my-3 grid grid-cols-1 md:grid-cols-2 gap-4">
- 
+
   <div className="col-span-2 ">
   <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
   <ProductDetailsCart key={product?.id} product={product}/>

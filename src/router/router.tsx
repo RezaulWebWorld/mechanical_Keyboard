@@ -10,6 +10,7 @@ import ShoppingCart from "../pages/ShoppingCart";
 import Checkout from "../pages/Checkout";
 import ProductDetails from "../component/ProductDetails";
 import Dashboard from "../pages/Dashboard";
+import SuccessPage from "../pages/SuccessPage";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
     {
       path: "/db",
       element: <Dashboard/>,
+    },
+    {
+      path: "/success",
+      element: <SuccessPage/>,
     },
   ]}
 ]);

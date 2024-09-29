@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type TOrder={
   name:string,
@@ -21,9 +22,10 @@ const UserForm = () => {
     console.log(order)
   }
   const [paymentMethod, setPaymentMethod]=useState<string>('Cash On Delivery')
+  const navigate=useNavigate()
   const handleSuccessPage=()=>{
     if(paymentMethod==="Cash On Delivery"){
-      console.log(" Go to Success")
+      navigate('/success')
     }
   }
   const handleSubmit=(e: { preventDefault: () => void; })=>{

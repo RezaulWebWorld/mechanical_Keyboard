@@ -1,23 +1,35 @@
 import { useState } from "react";
-import getAllProducts from "../Data/products";
 import ProductCart from "./ProductCart";
 import { useGetProductsQuery } from "../redux/api/api";
+//  type Products={
+//   _id:string;
+//   image: string;
+//   title: string;
+//   brand: string;
+//   availableQuantity: number;
+//   price: number;
+//   rating: number;
+//   description: string;
+//  }
 
 const ProductSearch = () => {
-  const {data}=useGetProductsQuery({})
+  const {data,isLoading,isError}=useGetProductsQuery({})
   console.log(data)
-  const products=getAllProducts()
+  const products=data?.data?.data
+  console.log(products)
+  
   const [searchQuery, setSearchQuery]= useState('')
   const [miniPrice, setMiniPrice]= useState('')
   const [maxPrice, setMaxPrice]= useState('')
   const [sortOrder, setSortOrder]= useState<'a'|'d'|''>('')
 
-  const sortedProducts=products.filter((product)=>product.title.toLowerCase().includes(searchQuery.toLowerCase())|| product.brand.toLowerCase().includes(searchQuery.toLowerCase())).filter((product)=> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sortedProducts=products?.filter((product:any)=>product.title.toLowerCase().includes(searchQuery.toLowerCase())|| product.brand.toLowerCase().includes(searchQuery.toLowerCase())).filter((product:any)=> {
     const min=parseFloat(miniPrice)
     const max=parseFloat(maxPrice)
     return (!min||product.price >= min ) && (!max || product.price<= max)
   
-  }).sort((a, b)=>
+  }).sort((a: { price: number; }, b: { price: number; })=>
  {
   if(sortOrder === 'a') return a.price-b.price; 
   if(sortOrder === 'd')return b.price- a.price;
@@ -30,7 +42,13 @@ const ProductSearch = () => {
     setMaxPrice('')
     setSortOrder('')
   }
-  
+  // handeling is Loading (get rid of Filter problems)
+  if(isLoading){
+    return <p> Please Wait for some Time.......</p>
+  }
+  if(isError){
+    return <p> Opps, There is an error in Data fetching.......</p>
+  }
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
       <div className="grid grid-cols-1 space-y-4 p-5">
@@ -63,7 +81,7 @@ const ProductSearch = () => {
   />
 </div>
 
-{/* Sort Options */}
+{/* Sort Option */}
 <div className="flex space-x-4">
   <select
     value={sortOrder}
@@ -95,7 +113,8 @@ const ProductSearch = () => {
 <div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
   {sortedProducts.length > 0 ? (
-    sortedProducts.map((product) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sortedProducts.map((product:any) => (
       <ProductCart key={product.id} product={product}/>
     ))
   ) : (

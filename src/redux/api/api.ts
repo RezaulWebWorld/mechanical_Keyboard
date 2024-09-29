@@ -11,16 +11,27 @@ export const baseApi = createApi({
       }),
       providesTags: ["products"],
     }),
+    getFeaturedProducts: builder.query({
+      query: () => ({
+        method: "GET",
+        url: "/home",
+      }),
+      providesTags: ["products"],
+    }),
     createProduct: builder.mutation({
       query: (data) => {
         return {
           method: "POST",
           url: `/`,
-          dody: data,
+          body: data,
         };
       },
     }),
   }),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation } = baseApi;
+export const {
+  useGetProductsQuery,
+  useGetFeaturedProductsQuery,
+  useCreateProductMutation,
+} = baseApi;

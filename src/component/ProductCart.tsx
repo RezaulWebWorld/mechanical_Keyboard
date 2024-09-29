@@ -7,7 +7,6 @@ const ProductCart = ({product}:{product:any}) => {
   
   const navigate=useNavigate()
 
-  
     const handleDetails=()=>{
        navigate(`/details/${product.id}`)
     }
