@@ -55,7 +55,7 @@ const UserForm = () => {
           <input
             type="email"
             name="email"
-            // value={order.email}
+            value={order.email}
             onChange={handleOrder}
             className="w-full p-2 border rounded"
             placeholder="Enter your email"
@@ -67,7 +67,7 @@ const UserForm = () => {
           <input
             type="text"
             name="phone"
-            // value={order.phone}
+             value={order.phone}
             onChange={handleOrder}
             className="w-full p-2 border rounded"
             placeholder="Enter your phone number"
@@ -78,7 +78,7 @@ const UserForm = () => {
           <label className="block text-gray-700">Delivery Address</label>
           <textarea
             name="address"
-            // value={order.address}
+            value={order.address}
             onChange={handleOrder}
             className="w-full p-2 border rounded"
             placeholder="Enter your delivery address"

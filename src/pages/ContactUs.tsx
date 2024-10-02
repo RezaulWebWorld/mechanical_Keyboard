@@ -16,8 +16,7 @@ const ContactUs= () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend or API)
-    console.log(formData);
+    setFormData({name:'',email:'',message:''})
   };
 
   return (
@@ -34,13 +33,13 @@ const ContactUs= () => {
             </p>
             <ul className="space-y-4">
               <li>
-                <strong>Address:</strong> 1234 Main St, Your City, Country
+                <strong>Address:</strong> 515, Boro Horishpur, Natore, Bangladesh
               </li>
               <li>
-                <strong>Phone:</strong> +123 456 7890
+                <strong>Phone:</strong> +8801303707997
               </li>
               <li>
-                <strong>Email:</strong> contact@yourcompany.com
+                <strong>Email:</strong> support.keyboardfare@keyboardfare.com
               </li>
             </ul>
           </div>

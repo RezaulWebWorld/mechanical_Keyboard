@@ -1,25 +1,24 @@
-import { useState } from "react";
 import { Button } from "../components/ui/button";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { addAvailable, addBrand, addDescription, addImage, addPrice, addRating, addTitle, clearProduct } from "../redux/Features/productSlice";
+import { useCreateProductMutation } from "../redux/api/api";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ModalCreate({ onClose, onAdd }: any) {
-  const [newProduct, setNewProduct] = useState({
-    title: "",
-    price: "",
-    description: "",
-    quantity: "",
-    rating: "",
-    image: "",
-    brand: "",
-  });
+  const dispatch=useAppDispatch()
+  const {title,price,description,availableQuantity,rating,image,brand}=useAppSelector((state)=>state.product)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-  };
+  const [createProduct]=useCreateProductMutation()
+  
 
-  const handleSubmit = () => {
-    const productWithId = { ...newProduct, id: Date.now() };
-    onAdd(productWithId);
+  const handleSubmit = async(e:React.FormEvent) => {
+    e.preventDefault()
+    console.log({title,price,description,availableQuantity,rating, image, brand})
+    await createProduct({title,price,description,availableQuantity,rating, image, brand})
+    dispatch(clearProduct())
+  
+    onAdd(false)
+   
   };
 
   return (
@@ -27,60 +26,60 @@ export default function ModalCreate({ onClose, onAdd }: any) {
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-lg font-semibold mb-4">Add New Product</h2>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="title"
-            value={newProduct.title}
-            onChange={handleInputChange}
+            value={title}
+            onChange={(e)=> dispatch(addTitle(e.target.value))}
             placeholder="Product Name"
             className="border p-2 w-full"
           />
           <input
             type="number"
             name="price"
-            value={newProduct.price}
-            onChange={handleInputChange}
+            value={price}
+            onChange={(e)=> dispatch(addPrice(e.target.value))}
             placeholder="Price"
             className="border p-2 w-full"
           />
           <input
             type="text"
             name="description"
-            value={newProduct.description}
-            onChange={handleInputChange}
+            value={description}
+            onChange={(e)=> dispatch(addDescription(e.target.value))}
             placeholder="Description"
             className="border p-2 w-full"
           />
           <input
             type="number"
             name="quantity"
-            value={newProduct.quantity}
-            onChange={handleInputChange}
+            value={availableQuantity}
+            onChange={(e)=> dispatch(addAvailable(e.target.value),)}
             placeholder="Available Quantity"
             className="border p-2 w-full"
           />
           <input
             type="number"
             name="rating"
-            value={newProduct.rating}
-            onChange={handleInputChange}
+            value={rating}
+            onChange={(e)=> dispatch(addRating(e.target.value))}
             placeholder="Rating"
             className="border p-2 w-full"
           />
           <input
             type="text"
             name="image"
-            value={newProduct.image}
-            onChange={handleInputChange}
+            value={image}
+            onChange={(e)=> dispatch(addImage(e.target.value))}
             placeholder="Image URL"
             className="border p-2 w-full"
           />
           <input
             type="text"
             name="brand"
-            value={newProduct.brand}
-            onChange={handleInputChange}
+            value={brand}
+            onChange={(e)=> dispatch(addBrand(e.target.value))}
             placeholder="Brand"
             className="border p-2 w-full"
           />

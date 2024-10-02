@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedin} from 'react-icons/fa';
 
 const FooterSection = () => {
   return (
@@ -20,16 +20,10 @@ const FooterSection = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+              <a href="https://facebook.com/RezaulKarim11703" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
                 <FaFacebookF className="w-6 h-6" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-                <FaTwitter className="w-6 h-6" />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500">
-                <FaInstagram className="w-6 h-6" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700">
+              <a href="https://www.linkedin.com/in/rezaulkarim11703" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700">
                 <FaLinkedin className="w-6 h-6" />
               </a>
             </div>
@@ -46,20 +40,14 @@ const FooterSection = () => {
                 <a href="/products" className="hover:underline">Products</a>
               </li>
               <li className="mb-2">
-                <a href="/shipping" className="hover:underline">Shipping & Delivery</a>
-              </li>
-              <li className="mb-2">
                 <a href="/contact" className="hover:underline">Contact Us</a>
-              </li>
-              <li className="mb-2">
-                <a href="/terms" className="hover:underline">Terms & Conditions</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center">
-          <p>&copy; 2024 Keyboard Store. All rights reserved.</p>
+          <p>&copy; 2024 Keyboard Fare. All rights reserved.</p>
         </div>
       </div>
     </footer>
