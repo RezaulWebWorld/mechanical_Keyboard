@@ -1,46 +1,40 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "../components/ui/button"
 import { Table, TableBody, TableCaption, TableCell,TableHead, TableHeader, TableRow } from "../components/ui/table"
 // import { FaDeleteLeft } from "react-icons/fa6";
 // import { FiEdit } from "react-icons/fi";
 import {  useState } from "react";
-// import UpdateProductModal from "./ModalUpdate";
+import UpdateProductModal from "./ModalUpdate";
 // import DeleteConfirmationModal from "./ModalDelete";
 import ModalCreate from "./ModalCreate";
 import {  useGetProductsQuery } from "../redux/api/api";
+
+import { FileEdit } from "lucide-react";
+import { useAppDispatch } from "../redux/hook";
+import { pickId } from "../redux/Features/updateSlice";
 
 
 export function DataTable() {
   const {data,isLoading, isError}=useGetProductsQuery({})
  const initialData= data?.data?.data
-  //  const [products, setProducts]=useState(initialData)
+ const dispatch=useAppDispatch()
+  // //  const [products, setProducts]=useState(initialData)
   // const [selectedProduct, setSelectedProduct]=useState(null)
-  // const [isUpdatedModalOpen, setUpdatedModalOpen]=useState(false)
+   const [isUpdatedModalOpen, setUpdatedModalOpen]=useState(false)
   // const [isDeletedModalOpen, setDeletedModalOpen]=useState(false)
   const [isNewProductModalOpen, setNewProductModalOpen]=useState(false)
 
-// const handleUpdateModal=(product:any)=>{
-//   setSelectedProduct(product)
-//  setUpdatedModalOpen(true)
-// }
+const handleUpdateModal=(id:any)=>{
+  dispatch(pickId(id))
+ setUpdatedModalOpen(true)
+}
   
-  // const handleCreateProduct=async(newProducts:any)=>{
-  // //  setProducts([...products,newProducts])
-  // //  console.log(products)
   
-    
-  // }
 // const handleDeleteModal=(product: any)=>{
 //   setSelectedProduct(product)
 //   setDeletedModalOpen(true)
 // }
-  // const handleUpdateData=(updatedProduct:any)=>{
-  //   setProducts((prevProducts:any) =>
-  //     prevProducts?.map((product:any) =>
-  //       product._id === updatedProduct ? updatedProduct : product
-  //     )
-  //   );
-  // }
   
   // const handleDeleteData=(selectedProduct:any)=>{
   //   console.log(selectedProduct, "Select Product Clicked")
@@ -79,25 +73,22 @@ export function DataTable() {
               <TableCell className="mx-auto">{product.price}</TableCell>
               <TableCell className="mx-auto">{product.brand}</TableCell>
               <TableCell className="grid grid-cols-2 gap-2 mx-auto">
-              {/* <Button onClick={()=>
-                    handleUpdateModal(product._id)}><FiEdit/></Button> 
-              <Button onClick={()=>handleDeleteModal(product)}><FaDeleteLeft/>
-              </Button> */}
+              <Button onClick={()=>
+                    handleUpdateModal(product._id)}><FileEdit/></Button> 
+              {/* <Button onClick={()=>handleDeleteModal(product)}><FaDeleteLeft/></Button> */}
               </TableCell>
             </TableRow> )
         } 
       </TableBody>
     </Table>
-     {/* {isUpdatedModalOpen && (
+     {isUpdatedModalOpen && (
       <UpdateProductModal
-        product={selectedProduct}
         onClose={() => setUpdatedModalOpen(false)}
-        // onUpdate={(updatedProduct:any) => {
-        //   handleUpdateData(updatedProduct)
-        //   setUpdatedModalOpen(false);
-        // }}
+        onUpdate={(e:boolean) => {
+          setUpdatedModalOpen(e);
+        }}
       />
-    )} */}
+    )}
 
     {/* Delete Confirmation Modal */}
      {/* {isDeletedModalOpen && selectedProduct &&  (

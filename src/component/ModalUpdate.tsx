@@ -1,27 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { clearField, updatedBrand, updatedPrice, updatedTitle } from "../redux/Features/updateSlice";
+import { useUpdateProductMutation } from "../redux/api/api";
 
 
-interface UpdateProductModalProps {
-  product: any;
+type UpdateProductModalProps= {
   onClose: () => void;
   onUpdate: (updatedProduct:any) => void;
 }
 
 const UpdateProductModal: React.FC<UpdateProductModalProps> = ({
-  product,
   onClose,
   onUpdate,
 }) => {
-  const [updatedProduct, setUpdatedProduct] = useState(product);
+const dispatch=useAppDispatch()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUpdatedProduct({ ...updatedProduct, [name]: value });
-  };
+const {id,title,brand,price}=useAppSelector((state)=>state.updateProduct)
+const [updateProduct]= useUpdateProductMutation()
 
-  const handleSubmit = () => {
-    onUpdate(updatedProduct); // Trigger update in parent component
+const handleSubmit =async () => {
+  const updateInfo={title,brand,price} 
+    await updateProduct({id, updateInfo})
+    onUpdate(false); // Trigger update in parent component
+    dispatch(clearField())
     onClose(); // Close modal
   };
 
@@ -35,8 +37,8 @@ const UpdateProductModal: React.FC<UpdateProductModalProps> = ({
             <input
               type="text"
               name="title"
-              value={updatedProduct.title}
-              onChange={handleChange}
+              value={title}
+              onChange={(e)=>dispatch(updatedTitle(e.target.value))}
               className="border p-2 w-full"
             />
           </div>
@@ -45,8 +47,8 @@ const UpdateProductModal: React.FC<UpdateProductModalProps> = ({
             <input
               type="number"
               name="price"
-              value={updatedProduct.price}
-              onChange={handleChange}
+              value={price}
+              onChange={(e)=>dispatch(updatedPrice(e.target.value))}
               className="border p-2 w-full"
             />
           </div>
@@ -55,8 +57,8 @@ const UpdateProductModal: React.FC<UpdateProductModalProps> = ({
             <input
               type="text"
               name="brand"
-              value={updatedProduct.brand}
-              onChange={handleChange}
+              value={brand}
+              onChange={(e)=>dispatch(updatedBrand(e.target.value))}
               className="border p-2 w-full"
             />
           </div>

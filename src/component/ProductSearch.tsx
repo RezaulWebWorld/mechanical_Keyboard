@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import ProductCart from "./ProductCart";
 import { useGetProductsQuery } from "../redux/api/api";
@@ -14,16 +15,13 @@ import { useGetProductsQuery } from "../redux/api/api";
 
 const ProductSearch = () => {
   const {data,isLoading,isError}=useGetProductsQuery({})
-  console.log(data)
   const products=data?.data?.data
-  console.log(products)
-  
   const [searchQuery, setSearchQuery]= useState('')
   const [miniPrice, setMiniPrice]= useState('')
   const [maxPrice, setMaxPrice]= useState('')
   const [sortOrder, setSortOrder]= useState<'a'|'d'|''>('')
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // For Sorting products using includes & convert all values to lowerCase
   const sortedProducts=products?.filter((product:any)=>product.title.toLowerCase().includes(searchQuery.toLowerCase())|| product.brand.toLowerCase().includes(searchQuery.toLowerCase())).filter((product:any)=> {
     const min=parseFloat(miniPrice)
     const max=parseFloat(maxPrice)
@@ -35,7 +33,7 @@ const ProductSearch = () => {
   if(sortOrder === 'd')return b.price- a.price;
   return 0
  })
-
+ // Reseting Filters 
   const clearFilters=()=>{
     setSearchQuery('')
     setMiniPrice('')
@@ -113,7 +111,6 @@ const ProductSearch = () => {
 <div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
   {sortedProducts.length > 0 ? (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sortedProducts.map((product:any) => (
       <ProductCart key={product.id} product={product}/>
     ))

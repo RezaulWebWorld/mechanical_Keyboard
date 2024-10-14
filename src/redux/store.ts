@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./Features/cartSlice";
 import { baseApi } from "./api/api";
 import productSlice from "./Features/productSlice";
+import updateSlice from "./Features/updateSlice";
 // ...
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     product: productSlice,
+    updateProduct: updateSlice,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   //Compolesary Middlewares For Redux Rtk Query

@@ -13,10 +13,8 @@ export default function ModalCreate({ onClose, onAdd }: any) {
 
   const handleSubmit = async(e:React.FormEvent) => {
     e.preventDefault()
-    console.log({title,price,description,availableQuantity,rating, image, brand})
     await createProduct({title,price,description,availableQuantity,rating, image, brand})
     dispatch(clearProduct())
-  
     onAdd(false)
    
   };
